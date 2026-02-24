@@ -123,11 +123,13 @@ Doc: [CryoWizard Optional Settions](readmes/CryoWizard_opt/README.md)
 
 **v1.1 CryoWizard Improvements**:
 
+All tests for CryoWizard v1.1 were conducted using the `default` preset pipeline type.
+
 |                                                                       |                                                        v1.1                                                        |                                                        v1.0                                                         | Author-deposited resolution |
 |-----------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------:|:---------------------------:|
 | EMPIAR-10405 <br> (CryoWizard v1.1 only used 596 of total 743 movies) | 2.56 A <br> ![figure](./readmes/main_figures/10405_v1.1_J342_fsc_iteration_007_after_fsc_mask_auto_tightening.png) | 3.25 A <br> ![figure](./readmes/main_figures/10405_v1.0_J1544_fsc_iteration_011_after_fsc_mask_auto_tightening.png) |            2.6 A            |
 | EMPIAR-10556                                                          | 2.24 A <br> ![figure](./readmes/main_figures/10556_v1.1_J349_fsc_iteration_008_after_fsc_mask_auto_tightening.png) | 2.72 A <br> ![figure](./readmes/main_figures/10556_v1.0_J327_fsc_iteration_008_after_fsc_mask_auto_tightening.png)  |           1.95 A            |
-
+| EMPIAR-10454                                                          | 2.84 A <br> ![figure](./readmes/main_figures/10454_v1.1_J393_fsc_iteration_010_after_fsc_mask_auto_tightening.png) | 3.16 A <br> ![figure](./readmes/main_figures/10454_v1.0_J1182_fsc_iteration_011_after_fsc_mask_auto_tightening.png) |            2.8 A            |
 
 - **2026.2.22**: We have refactored the code architecture of CryoWizard, making pipeline construction significantly more flexible. Additionally, the user interface and entry points have been unified into `CryoWizard.py`
 
