@@ -15,6 +15,8 @@ Please cite the following paper if this work is useful for your research:
 }
 ```
 
+This model is intended for **academic research** only. Commercial use is prohibited without explicit permission.
+
 
 ## Installation
 
