@@ -1,7 +1,7 @@
 {
   "name": "CryoWizard",
   "description": "CryoWizard, a fully automated single-particle cryo-EM data processing pipeline. GitHub address: https://github.com/SMART-StructBio-AI/CryoWizard.",
-  "version": "1.1",
+  "version": "1.5",
   "manifest_version": 3,
   "permissions": [
     "activeTab",

@@ -123,13 +123,13 @@ Doc: [CryoWizard Optional Settions](readmes/CryoWizard_opt/README.md)
 
 ## Updata log
 
-### v1.1
+### v1.5
 
-**v1.1 CryoWizard Improvements**:
+**v1.5 CryoWizard Improvements**:
 
-All tests for CryoWizard v1.1 were conducted using the `default` preset pipeline type.
+All tests for CryoWizard v1.5 were conducted using the `default` preset pipeline type.
 
-|                                                                                 |                                                        v1.1                                                        |                                                        v1.0                                                         | Author-deposited resolution |
+|                                                                                 |                                                        v1.5                                                        |                                                        v1.0                                                         | Author-deposited resolution |
 |---------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------:|:---------------------------:|
 | EMPIAR-10250 (64 kDa)                                                           | 2.75 A <br> ![figure](./readmes/main_figures/10250_v1.1_J473_fsc_iteration_011_after_fsc_mask_auto_tightening.png) | 3.3 A <br> ![figure](./readmes/main_figures/10250_v1.0_J3825_fsc_iteration_008_after_fsc_mask_auto_tightening.png)  |        2.8 A / 3.2 A        |
 | EMPIAR-10405 (440 kDa) <br> (CryoWizard v1.1 only used 596 of total 743 movies) | 2.56 A <br> ![figure](./readmes/main_figures/10405_v1.1_J342_fsc_iteration_007_after_fsc_mask_auto_tightening.png) | 3.25 A <br> ![figure](./readmes/main_figures/10405_v1.0_J1544_fsc_iteration_011_after_fsc_mask_auto_tightening.png) |            2.6 A            |
