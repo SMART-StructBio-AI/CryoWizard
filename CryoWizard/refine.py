@@ -25,13 +25,15 @@ def plot_final_refine_curve(cryowizard_job, plot_info_list, sorted_combined_scor
         sorted_particle_num_list.append(sorted_plot_info_list[plot_info_list_ptr]['particle_num'])
         sorted_min_score_list.append(sorted_plot_info_list[plot_info_list_ptr]['min_score'])
         sorted_resolution_list.append(sorted_plot_info_list[plot_info_list_ptr]['resolution'])
-    try:
-        interpolate_function = scipy.interpolate.interp1d(sorted_particle_num_list, sorted_resolution_list, kind='quadratic', bounds_error=False)
-        interpolated_sorted_particle_num_list = np.arange(sorted_particle_num_list[0], sorted_particle_num_list[-1], (sorted_particle_num_list[-1] - sorted_particle_num_list[0]) / 100.0)
-        interpolated_sorted_resolution_list = interpolate_function(interpolated_sorted_particle_num_list)
-    except:
-        interpolated_sorted_particle_num_list = sorted_particle_num_list
-        interpolated_sorted_resolution_list = sorted_resolution_list
+    # try:
+    #     interpolate_function = scipy.interpolate.interp1d(sorted_particle_num_list, sorted_resolution_list, kind='quadratic', bounds_error=False)
+    #     interpolated_sorted_particle_num_list = np.arange(sorted_particle_num_list[0], sorted_particle_num_list[-1], (sorted_particle_num_list[-1] - sorted_particle_num_list[0]) / 100.0)
+    #     interpolated_sorted_resolution_list = interpolate_function(interpolated_sorted_particle_num_list)
+    # except:
+    #     interpolated_sorted_particle_num_list = sorted_particle_num_list
+    #     interpolated_sorted_resolution_list = sorted_resolution_list
+    interpolated_sorted_particle_num_list = sorted_particle_num_list
+    interpolated_sorted_resolution_list = sorted_resolution_list
     plt.clf()
     plt.ioff()
     plt.plot(interpolated_sorted_particle_num_list, interpolated_sorted_resolution_list)
@@ -50,13 +52,15 @@ def plot_final_refine_curve(cryowizard_job, plot_info_list, sorted_combined_scor
         sorted_particle_num_list.append(sorted_plot_info_list[plot_info_list_ptr]['particle_num'])
         sorted_min_score_list.append(sorted_plot_info_list[plot_info_list_ptr]['min_score'])
         sorted_resolution_list.append(sorted_plot_info_list[plot_info_list_ptr]['resolution'])
-    try:
-        interpolate_function = scipy.interpolate.interp1d(sorted_min_score_list, sorted_resolution_list, kind='quadratic', bounds_error=False)
-        interpolated_sorted_min_score_list = np.arange(sorted_min_score_list[0], sorted_min_score_list[-1], (sorted_min_score_list[-1] - sorted_min_score_list[0]) / 100.0)
-        interpolated_sorted_resolution_list = interpolate_function(interpolated_sorted_min_score_list)
-    except:
-        interpolated_sorted_min_score_list = sorted_min_score_list
-        interpolated_sorted_resolution_list = sorted_resolution_list
+    # try:
+    #     interpolate_function = scipy.interpolate.interp1d(sorted_min_score_list, sorted_resolution_list, kind='quadratic', bounds_error=False)
+    #     interpolated_sorted_min_score_list = np.arange(sorted_min_score_list[0], sorted_min_score_list[-1], (sorted_min_score_list[-1] - sorted_min_score_list[0]) / 100.0)
+    #     interpolated_sorted_resolution_list = interpolate_function(interpolated_sorted_min_score_list)
+    # except:
+    #     interpolated_sorted_min_score_list = sorted_min_score_list
+    #     interpolated_sorted_resolution_list = sorted_resolution_list
+    interpolated_sorted_min_score_list = sorted_min_score_list
+    interpolated_sorted_resolution_list = sorted_resolution_list
     plt.clf()
     plt.ioff()
     plt.plot(interpolated_sorted_min_score_list, interpolated_sorted_resolution_list)
