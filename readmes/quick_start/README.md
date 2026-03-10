@@ -91,6 +91,8 @@ This extension is for the Google Chrome browser. If you do not have Chrome, you 
 
 6. To resume a stopped job, simply navigate to the Details page and click `Continue`. Within seconds, CryoWizard will automatically pick up from the last recorded step.
 
+   > **Caution**: Do **NOT** click the `Restart Job` button of CryoWizard job, as it will permanently delete all data associated with this job. To resume the pipeline, please use the `Continue` button instead.
+   
    ![figure](./figures/cryowizardcrx15.png)
 
 
