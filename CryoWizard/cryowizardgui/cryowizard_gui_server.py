@@ -715,4 +715,5 @@ def startup_gui(gui_port):
     else:
         final_gui_port = gui_port
     print('Web service start, press Ctrl+C to quit if you want to stop this web service. (GUI port: ' + (str)(final_gui_port) + ')', flush=True)
+    print('For the user tutorial and full documentation of CryoWizard, please refer to: https://github.com/SMART-StructBio-AI/CryoWizard', flush=True)
     socketio.run(app, host='0.0.0.0', port=final_gui_port)
