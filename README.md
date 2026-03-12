@@ -1,5 +1,10 @@
 # CryoWizard: a fully automated single-particle cryo-EM data processing pipeline.
 
+
+[![Paper](https://img.shields.io/badge/Paper-Nature%20Methods-blue)](https://doi.org/10.1038/s41592-025-02916-8)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFD21E?logo=huggingface&logoColor=000)](https://huggingface.co/westlake-repl/Cryo-IEF)
+
+
 CryoWizard is a fully automated single-particle Cryo-EM data processing software. It streamlines the workflow from raw movies, micrographs, or particles to high-resolution 3D volumes. The entire process requires zero human intervention, needing only the input files and a few basic parameters to begin.
 
 Please cite the following paper if this work is useful for your research:
