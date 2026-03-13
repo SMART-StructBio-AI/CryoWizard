@@ -5,6 +5,7 @@ import psutil
 import pickle
 import queue
 import tarfile
+import zipfile
 import shutil
 import json
 import yaml
@@ -170,20 +171,77 @@ def readyaml(filename):
         savingdata = yaml.load(f.read(), Loader=yaml.FullLoader)
     return savingdata
 
+def unpackzip(filename, remove_source_file=False, ifprint=True):
+    # 解压缩zip文件到当前目录
+    if ((len(filename) <= 4) or (filename[-4:] != '.zip')):
+        if ifprint:
+            print(filename, 'is not a zip file...', flush=True)
+        return False
+    try:
+        with zipfile.ZipFile(filename, 'r') as zip_file_handle:
+            zip_file_handle.extractall()
+        if remove_source_file:
+            os.remove(filename)
+        if ifprint:
+            print(filename, 'unpack success...', flush=True)
+        return True
+    except:
+        if ifprint:
+            print(filename, 'unpack failed...', flush=True)
+        if os.path.exists(filename[:-3]):
+            os.remove(filename[:-3])
+        return False
+
+def packtozip(filename, remove_source_file=False, ifprint=True):
+    # 压缩文件或文件夹为zip到目标文件或文件夹所在目录
+    def writeallfilestozip(source_file_name, root_path, zip_file_handle):
+        if os.path.isdir(source_file_name):
+            file_list = os.listdir(source_file_name)
+            for file_item in file_list:
+                file_item_abs_path = os.path.join(source_file_name, file_item)
+                if os.path.isdir(file_item_abs_path):
+                    writeallfilestozip(file_item_abs_path, root_path, zip_file_handle)
+                else:
+                    zip_file_handle.write(file_item_abs_path, arcname=file_item_abs_path[len(root_path) + 1:])
+        else:
+            zip_file_handle.write(source_file_name, arcname=source_file_name[len(root_path) + 1:])
+    try:
+        absfilename = os.path.normpath(os.path.abspath(filename))
+        absrootpath = os.path.normpath(os.path.dirname(absfilename))
+        zip_file_handle = zipfile.ZipFile(absfilename + '.zip', "w", zipfile.ZIP_DEFLATED)
+        writeallfilestozip(absfilename, absrootpath, zip_file_handle)
+        if remove_source_file:
+            if os.path.isdir(absfilename):
+                shutil.rmtree(absfilename)
+            else:
+                os.remove(absfilename)
+        if ifprint:
+            print(filename + '.zip', 'pack success...', flush=True)
+        return True
+    except:
+        if ifprint:
+            print(filename, 'pack to zip failed...', flush=True)
+        if os.path.exists(filename + '.zip'):
+            os.remove(filename + '.zip')
+        return False
+
 def unpacktargz(filename, remove_source_file=False, ifprint=True):
     # 解压缩tar.gz文件到当前目录
     if ((len(filename) <= 7) or (filename[-7:] != '.tar.gz')):
         if ifprint:
             print(filename, 'is not a tar.gz file...', flush=True)
         return False
-
     filepath = os.path.dirname(filename)
-
     try:
         if not os.path.exists(filepath):
             os.makedirs(filepath)
         with tarfile.open(filename, 'r:gz') as f:
             f.extractall(path=filepath)
+        if remove_source_file:
+            os.remove(filename)
+        if ifprint:
+            print(filename, 'unpack success...', flush=True)
+        return True
     except:
         if ifprint:
             print(filename, 'unpack failed...', flush=True)
@@ -191,29 +249,21 @@ def unpacktargz(filename, remove_source_file=False, ifprint=True):
             shutil.rmtree(filename[:-7])
         return False
 
-    if remove_source_file:
-        os.remove(filename)
-    if ifprint:
-        print(filename, 'unpack success...', flush=True)
-    return True
-
 def packtotargz(foldername, remove_source_folder=False, ifprint=True):
     # 压缩指定文件夹为tar.gz
     sourcefoldername = os.path.normpath(foldername)
     packname = os.path.basename(sourcefoldername)
-
     try:
         with tarfile.open(sourcefoldername + '.tar.gz', 'w:gz') as f:
             f.add(sourcefoldername, arcname=packname)
+        if remove_source_folder:
+            shutil.rmtree(sourcefoldername)
+        if ifprint:
+            print(sourcefoldername + '.tar.gz', 'pack success...', flush=True)
+        return True
     except:
         if ifprint:
             print(sourcefoldername, 'pack to tar.gz failed...', flush=True)
         if os.path.exists(sourcefoldername + '.tar.gz'):
             os.remove(sourcefoldername + '.tar.gz')
         return False
-
-    if remove_source_folder:
-        shutil.rmtree(sourcefoldername)
-    if ifprint:
-        print(sourcefoldername + '.tar.gz', 'pack success...', flush=True)
-    return True

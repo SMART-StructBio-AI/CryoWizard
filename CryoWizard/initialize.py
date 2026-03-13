@@ -68,6 +68,12 @@ def install(user_email, user_password, license, hostname, port, cryoranker_model
         shutil.rmtree(os.path.join(filedir, 'CryoWizard', 'cryowizardcache'))
     os.makedirs(os.path.join(filedir, 'CryoWizard', 'cryowizardcache'))
 
+    # pack extension.zip
+    if os.path.exists(os.path.join(filedir, 'extension.zip')):
+        os.remove(os.path.join(filedir, 'extension.zip'))
+    toolbox.packtozip(os.path.join(filedir, 'CryoWizard', 'cryowizardgui', 'extension'), False, True)
+    shutil.move(os.path.join(filedir, 'CryoWizard', 'cryowizardgui', 'extension.zip'), os.path.join(filedir, 'extension.zip'))
+
     # create cryosparc job parameters
     import cryowizardlib.CSLogin as CSLogin
     cshandle = CSLogin.cshandleclass.GetCryoSPARCHandle(email=user_email, password=user_password)
