@@ -30,7 +30,9 @@ Once the CryoWizard backend is running, we recommend two primary ways to use the
 
 This extension is for the Google Chrome browser. If you do not have Chrome, you can download it from the [Chrome official website](https://www.google.com/chrome/).
 
-1. Copy the `extension.zip` file to your own computer and unzip it, which is located in `path/to/CryoWizard/extension.zip` (You need to complete the `python CryoWizard.py --CryoWizardInstall ...` process first, and then the `extension.zip` file will exist in this directory). This will create a folder named `extension`.
+1. Copy the `extension.zip` file to your own computer and unzip it, which is located in `path/to/CryoWizard/extension.zip`. This will create a folder named `extension`.
+
+   > **Caution**: You need to complete the `python CryoWizard.py --CryoWizardInstall ...` process first, and then the `extension.zip` file will exist in this directory. See CryoWizard Installation, step 3.
 
 2. Open Chrome and navigate to `Settings -> Extensions -> Manage Extensions`
 

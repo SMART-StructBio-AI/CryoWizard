@@ -74,7 +74,6 @@ Some of CryoWizard's features are powered by deep learning models, which require
 
 Now, simply run one last command to initialize CryoWizard, and you are all set!
 
-    (base) $ conda activate cryowizard
     (cryowizard) $ cd path/to/CryoWizard
     (cryowizard) $ python CryoWizard.py \
         --CryoWizardInstall \
