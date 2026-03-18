@@ -419,7 +419,18 @@ def web_add_preset_pipeline_action(target_workflow_name, cryosparc_username, cry
                                       ' --cryowizard_job_uid ' + jobid)
         for key, value in preset_pipeline_parameters.items():
             if value is not None:
-                modify_base_parameters_cmd += (' --' + key + ' \'' + value + '\'')
+                if key in [
+                    'source_movie_job_uid',
+                    'source_micrograph_job_uid',
+                    'source_particle_job_uid',
+                    'source_template_job_uid',
+                    'source_volume_job_uid',
+                    'source_mask_job_uid',
+                    'source_cryoranker_job_uid'
+                ]:
+                    modify_base_parameters_cmd += (' --' + key + ' ' + value)
+                else:
+                    modify_base_parameters_cmd += (' --' + key + ' \'' + value + '\'')
         os.system(modify_base_parameters_cmd)
         print('web modify base parameters cmd:', modify_base_parameters_cmd, flush=True)
     else:
@@ -433,7 +444,18 @@ def web_add_preset_pipeline_action(target_workflow_name, cryosparc_username, cry
                                       ' --cryowizard_job_uid ' + jobid)
         for key, value in preset_pipeline_parameters.items():
             if value is not None:
-                create_preset_pipeline_cmd += (' --' + key + ' \'' + value + '\'')
+                if key in [
+                    'source_movie_job_uid',
+                    'source_micrograph_job_uid',
+                    'source_particle_job_uid',
+                    'source_template_job_uid',
+                    'source_volume_job_uid',
+                    'source_mask_job_uid',
+                    'source_cryoranker_job_uid'
+                ]:
+                    create_preset_pipeline_cmd += (' --' + key + ' ' + value)
+                else:
+                    create_preset_pipeline_cmd += (' --' + key + ' \'' + value + '\'')
         os.system(create_preset_pipeline_cmd)
         print('web create pipeline cmd:', create_preset_pipeline_cmd, flush=True)
 
@@ -488,7 +510,18 @@ def web_pipeline_node_save_parameters_action(target_workflow_name, cryosparc_use
                                   ' --cryowizard_job_uid ' + jobid)
     for key, value in pipeline_node_parameters.items():
         if value is not None:
-            create_preset_pipeline_cmd += (' --' + key + ' \'' + value + '\'')
+            if key in [
+                'source_movie_job_uid',
+                'source_micrograph_job_uid',
+                'source_particle_job_uid',
+                'source_template_job_uid',
+                'source_volume_job_uid',
+                'source_mask_job_uid',
+                'source_cryoranker_job_uid'
+            ]:
+                create_preset_pipeline_cmd += (' --' + key + ' ' + value)
+            else:
+                create_preset_pipeline_cmd += (' --' + key + ' \'' + value + '\'')
     os.system(create_preset_pipeline_cmd)
 
     flask_socketio.emit('js_web_pipeline_node_save_parameters_action_' + target_workflow_name, {})
@@ -695,7 +728,7 @@ def DownloadMap():
         except:
             return '<div>Map download failed...</div><script type="text/javascript">setTimeout(function(){window.close();}, 5000);</script>'
     else:
-        return '<div>Job did not finish yet, please wait...</div><script type="text/javascript">setTimeout(function(){window.close();}, 5000);</script>'
+        return '<div>CryoWizard refinement did not finish yet, please wait...</div><script type="text/javascript">setTimeout(function(){window.close();}, 5000);</script>'
 
 
 
