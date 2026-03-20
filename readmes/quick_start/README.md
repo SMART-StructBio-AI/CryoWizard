@@ -32,7 +32,7 @@ This extension is for the Google Chrome browser. If you do not have Chrome, you 
 
 1. Copy the `extension.zip` file to your own computer and unzip it, which is located in `path/to/CryoWizard/extension.zip`. This will create a folder named `extension`.
 
-   > **Caution**: You need to complete the `python CryoWizard.py --CryoWizardInstall ...` process first, and then the `extension.zip` file will exist in this directory. See CryoWizard Installation, step 3.
+   > **Caution**: You need to complete the `python CryoWizard.py --CryoWizardInstall ...` process first, and then the `extension.zip` file will exist in this directory. See CryoWizard Installation, step 3. Of course, if the `extension.zip` file is accidentally deleted, you also can simply regenerate it by running `python CryoWizard.py --GenerateExtensionPackege`.
 
 2. Open Chrome and navigate to `Settings -> Extensions -> Manage Extensions`
 

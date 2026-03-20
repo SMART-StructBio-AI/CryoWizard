@@ -124,6 +124,10 @@ if __name__ == '__main__':
     parser.add_argument('--cryowizard_gui_port', default=None, type=int)
 
 
+    # regenerate extension.zip
+    parser.add_argument('--GenerateExtensionPackege', action="store_true")
+
+
 
     args = parser.parse_args()
     filedir = os.path.normpath(os.path.dirname(__file__))
@@ -800,6 +804,13 @@ if __name__ == '__main__':
     if args.CryoWizardGUI:
         import CryoWizard.cryowizardgui.cryowizard_gui_server as cryowizard_gui_server
         cryowizard_gui_server.startup_gui(args.cryowizard_gui_port)
+
+    if args.GenerateExtensionPackege:
+        if os.path.exists(os.path.join(filedir, 'extension.zip')):
+            os.remove(os.path.join(filedir, 'extension.zip'))
+        toolbox.packtozip(os.path.join(filedir, 'CryoWizard', 'cryowizardgui', 'extension'), False, True)
+        shutil.move(os.path.join(filedir, 'CryoWizard', 'cryowizardgui', 'extension.zip'), os.path.join(filedir, 'extension.zip'))
+
 
 
 

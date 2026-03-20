@@ -2,6 +2,14 @@
 # Use CryoWizard via Chrome Extension
 
 
+## Regenerate extension.zip
+
+Typically, the `extension.zip` file is automatically generated in the `/path/to/CryoWizard` directory during the installation process. If you accidentally delete it, you also can manually regenerate the file by running:
+
+    (cryowizard) $ cd path/to/CryoWizard
+    (cryowizard) $ python CryoWizard.py --GenerateExtensionPackege
+
+
 ## CryoWizard job inputs & parameters
    
 ### Inputs
