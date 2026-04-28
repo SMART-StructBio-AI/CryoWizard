@@ -155,7 +155,9 @@ This test case demonstrates the application of CryoWizard using the beta-galacto
    
    ![figure](./figures/J785_fsc_iteration_006_after_fsc_mask_auto_tightening.png)
 
-   ![figure](./figures/cryowizardresultshow01.png)   
+   ![figure](./figures/cryowizardresultshow01.png)
+
+   ![figure](./figures/cryowizardresultshow02.png)
 
 
 

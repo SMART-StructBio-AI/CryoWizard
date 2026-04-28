@@ -146,6 +146,7 @@ All tests for CryoWizard v1.5 were conducted using the `default` preset pipeline
 
 - **2026.2.22**: We have refactored the code architecture of CryoWizard, making pipeline construction significantly more flexible. Additionally, the user interface and entry points have been unified into `CryoWizard.py`
 
+
   
 
 

@@ -63,6 +63,7 @@ def cryoranker_get_score(cryowizardjob, cryowizardlog, project_dir, parameters_f
     filedir = os.path.normpath(os.path.dirname(__file__))
     globaldir = os.path.normpath(project_dir)
     metadatadir = os.path.join(globaldir, 'metadata', 'cryoranker', parameters_folder_name)
+    modelrecordsdir = os.path.join(filedir, 'cryowizardcache', 'modelrecords')
 
     # initialize
     if not os.path.exists(metadatadir):
@@ -114,7 +115,12 @@ def cryoranker_get_score(cryowizardjob, cryowizardlog, project_dir, parameters_f
                 f.write('export CUDA_VISIBLE_DEVICES=\'' + parameters['inference_gpu_ids'] + '\'\n')
             f.write('cd ' + metadatadir + '\n')
             f.write('accelerate launch  --mixed_precision=bf16 --main_process_port=' + (str)(usable_port) + ' ' + os.path.join(filedir, 'cryoranker_getscores.py') + '\n')
+
+        toolbox.record_model_inference_user_info(modelrecordsdir, parameters['cryosparc_username'], parameters['project'], cryoranker_job.uid, None, None)
+        modelinferencetimebegin = datetime.datetime.now()
         cryoranker_job.subprocess(('bash ' + os.path.join(metadatadir, 'GetScore.sh')).split(' '), mute=True)
+        modelinferencetimeend = datetime.datetime.now()
+        toolbox.record_model_inference_user_info(modelrecordsdir, parameters['cryosparc_username'], parameters['project'], cryoranker_job.uid, modelinferencetimeend - modelinferencetimebegin, None)
 
         if os.path.exists(os.path.join(metadatadir, 'scores.json')):
             output_groups = JobAPIs.create_output_groups(particle=[cryoranker_job.uid + '_particles'], ranker=[cryoranker_job.uid + '_particles'])
@@ -170,6 +176,7 @@ def cryoranker_get_score_slurm(cryowizardjob, cryowizardlog, project_dir, parame
     filedir = os.path.normpath(os.path.dirname(__file__))
     globaldir = os.path.normpath(project_dir)
     metadatadir = os.path.join(globaldir, 'metadata', 'cryoranker', parameters_folder_name)
+    modelrecordsdir = os.path.join(filedir, 'cryowizardcache', 'modelrecords')
 
     # initialize
     if not os.path.exists(metadatadir):
@@ -233,7 +240,11 @@ def cryoranker_get_score_slurm(cryowizardjob, cryowizardlog, project_dir, parame
                 break
             else:
                 time.sleep(1)
+        toolbox.record_model_inference_user_info(modelrecordsdir, parameters['cryosparc_username'], parameters['project'], cryoranker_job.uid, None, slurm_uid)
+        modelinferencetimebegin = datetime.datetime.now()
         get_slurm_output(cryoranker_job, os.path.join(metadatadir, 'GetScore.out'), slurm_uid, metadatadir)
+        modelinferencetimeend = datetime.datetime.now()
+        toolbox.record_model_inference_user_info(modelrecordsdir, parameters['cryosparc_username'], parameters['project'], cryoranker_job.uid, modelinferencetimeend - modelinferencetimebegin, slurm_uid)
 
         if os.path.exists(os.path.join(metadatadir, 'scores.json')):
             output_groups = JobAPIs.create_output_groups(particle=[cryoranker_job.uid + '_particles'], ranker=[cryoranker_job.uid + '_particles'])

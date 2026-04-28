@@ -103,6 +103,18 @@ def scanusableport(port_list):
             return port
     return None
 
+def record_model_inference_user_info(records_save_dir, cryosparc_username=None, model_inference_job_project=None, model_inference_job_uid=None, total_running_time=None, slurm_uid=None):
+    if not os.path.exists(records_save_dir):
+        os.makedirs(records_save_dir)
+    record_info = {
+        'cryosparc_username': (str)(cryosparc_username) if cryosparc_username is not None else None,
+        'model_inference_job_project': (str)(model_inference_job_project) if model_inference_job_project is not None else None,
+        'model_inference_job_uid': (str)(model_inference_job_uid) if model_inference_job_uid is not None else None,
+        'total_running_time': (str)(total_running_time) if total_running_time is not None else None,
+        'slurm_uid': (str)(slurm_uid) if slurm_uid is not None else None
+    }
+    savetojson(record_info, os.path.join(os.path.normpath(records_save_dir), cryosparc_username + '_' + model_inference_job_project + '_' + model_inference_job_uid + '.json'), False)
+
 def list_union(list_a, list_b):
     # 求两个python列表的并集
     return list(set(list_a).union(set(list_b)))

@@ -837,7 +837,7 @@ def modify_parameters(cryowizard_data_dir, parameters_folder_name, args):
         blob_pick_parameters_min_particle_diameter = (args.particle_diameter - 10) if ((args.particle_diameter - 10) >= 0) else 0
         blob_pick_parameters_max_particle_diameter = (args.particle_diameter + 10) if ((args.particle_diameter + 10) >= 0) else 0
         if args.raw_pixel_size is not None:
-            if ((1.0 - args.raw_pixel_size) > np.fabs(1.0 - 2.0 * args.raw_pixel_size)) and os.path.exists(os.path.join(parameters_folder_path, 'patch_motion_correction_parameters.json')):
+            if ((1.0 - args.raw_pixel_size) > np.fabs(1.0 - 2.0 * args.raw_pixel_size)) and (os.path.exists(os.path.join(parameters_folder_path, 'patch_motion_correction_parameters.json')) or os.path.exists(os.path.join(parameters_folder_path, 'reference_motion_correction_parameters.json'))):
                 motion_correction_parameters_output_fcrop_factor = '1/2'
                 extract_parameters_extraction_box_size = (int)(math.floor((float)(args.particle_diameter) / (args.raw_pixel_size * 2.0) / 5.0) * 10.0)
             else:
@@ -978,6 +978,8 @@ def modify_parameters(cryowizard_data_dir, parameters_folder_name, args):
         toolbox.savetojson(nurefine_parameters_final, os.path.join(parameters_folder_path, 'nurefine_parameters_final.json'))
     if os.path.exists(os.path.join(parameters_folder_path, 'reference_motion_correction_parameters.json')):
         reference_motion_correction_parameters = toolbox.readjson(os.path.join(parameters_folder_path, 'reference_motion_correction_parameters.json'))
+        if extract_parameters_extraction_box_size is not None:
+            reference_motion_correction_parameters['Fourier-crop to box size'] = extract_parameters_extraction_box_size
         if args.gpu_num is not None:
             reference_motion_correction_parameters['Number of GPUs'] = args.gpu_num
         toolbox.savetojson(reference_motion_correction_parameters, os.path.join(parameters_folder_path, 'reference_motion_correction_parameters.json'))

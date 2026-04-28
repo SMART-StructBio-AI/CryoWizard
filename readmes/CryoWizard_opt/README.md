@@ -59,3 +59,8 @@ After installation, a configuration file named `cryowizard_settings.yml` can be 
     # default parameters of CryoSPARC jobs
         ImportMovies:
             ...
+
+
+## More function
+
+1. CryoWizard automates the logging of model inference information for easier cluster management. When an inference task is performed, CryoWizard automatically generates a json file at CryoWizard/cryowizardcache/modelrecords to store relevant data, facilitating usage tracking for administrators.
