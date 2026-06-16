@@ -54,12 +54,12 @@ def install(user_email, user_password, license, hostname, port, cryoranker_model
 
     # save model weight info
     ## cryoranker
-    if os.path.exists(os.path.join(os.path.normpath(cryoranker_model_weight_path), 'cryo_ranker_v1.5_vit_b_model.safetensors')):
+    if os.path.exists(os.path.join(os.path.normpath(cryoranker_model_weight_path), 'cryo_ranker_v1.6_vit_b_model.safetensors')):
         cryoranker_inference_settings = toolbox.readyaml(os.path.join(filedir, 'CryoRanker', 'CryoRanker', 'cryoranker_inference_settings.yml'))
         cryoranker_inference_settings['path_model_proj'] = os.path.normpath(cryoranker_model_weight_path)
         toolbox.savetoyaml(cryoranker_inference_settings, os.path.join(filedir, 'CryoRanker', 'CryoRanker', 'cryoranker_inference_settings.yml'))
     else:
-        print('cryo_ranker_v1.5_vit_b_model.safetensors do not exist in ' + cryoranker_model_weight_path + ', installation fail', flush=True)
+        print('cryo_ranker_v1.6_vit_b_model.safetensors do not exist in ' + cryoranker_model_weight_path + ', installation fail', flush=True)
         return
     ## other models in the future...
 
