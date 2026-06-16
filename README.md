@@ -66,7 +66,7 @@ Upon successful execution, the Conda environment setup will be complete.
 
 Some of CryoWizard's features are powered by deep learning models, which require downloading pre-trained weights separately. Looking ahead, we plan to progressively integrate our latest research and new algorithms into CryoWizard to further enhance its capabilities.
 
-- CryoRanker: [https://huggingface.co/westlake-repl/Cryo-IEF](https://huggingface.co/westlake-repl/Cryo-IEF/tree/main/cryo_ranker_checkpoint)
+- CryoRanker: [CryoRanker_v1.5_download](https://huggingface.co/westlake-repl/Cryo-IEF/tree/main/cryo_ranker_checkpoint/v1.5)
 
 > Our models are intended for **academic research** only. Commercial use is prohibited without explicit permission.
 
